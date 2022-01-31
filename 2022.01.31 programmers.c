@@ -1,5 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include<stdlib.h>
 #include<stdio.h>
+#include<time.h>
 
 int solution(int nums[], size_t nums_len) {
 
@@ -41,26 +43,33 @@ int main(void) {
 
 	int nums[50] = {0,};
 	int count = 0;
+	srand(time(0));
+	
 
-	for (int i = 0; i < 50; i++)
+	printf("nums = ");
+
+	for (int i = 0; i < rand() % 50 + 1; i++)
 	{
-		scanf("%d", &nums[i]);
-		if (nums[i] == 0)
-		{
-			break;
-		}
+		nums[i] = rand() % 1000 + 1; // nums 배열에 랜덤한 수 대입
+		printf("%d ", nums[i]);
 		count++;
 	}
 
-	printf("%d", solution(nums,count));
+	for (int i = 0; i < count; i++)
+	{
+		for (int k = 1; k < count; k++)
+		{
+			if (nums[i] == nums[k])
+			{
+				nums[k] = rand() % 1000 + 1;
+			}
+		}
+	}
 
+	printf("\n");
+	printf("만들 수 있는 소수의 개수 : %d", solution(nums,count));
+	
 
-
-
-
-
-
-
-
+	return 0;
 
 }
